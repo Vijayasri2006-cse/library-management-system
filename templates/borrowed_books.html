@@ -1,0 +1,109 @@
+<!DOCTYPE html>      
+<html lang="en">      
+<head>      
+    <meta charset="UTF-8">      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <title>Borrowed Books - Library Management</title>      
+    <style>      
+        * {      
+            margin: 0;      
+            padding: 0;      
+            box-sizing: border-box;      
+        }      
+      
+        body {      
+            font-family: Arial, sans-serif;      
+            background: #f4f4f9;      
+            display: flex;      
+            justify-content: center;      
+            align-items: center;      
+            height: 100vh;      
+            margin: 0;      
+            overflow: hidden;      
+        }      
+      
+        .container {      
+            width: 90%;      
+            max-width: 1200px;      
+            height: 90%;      
+            background-color: #fff;      
+            padding: 30px;      
+            border-radius: 10px;      
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);      
+            overflow: auto;      
+        }      
+      
+        h1 {      
+            text-align: center;      
+            font-size: 2.5em;      
+            color: #6c5ce7;      
+            margin-bottom: 20px;      
+        }      
+      
+        .book-table {      
+            width: 100%;      
+            border-collapse: collapse;      
+            margin-top: 20px;      
+        }      
+      
+        .book-table th, .book-table td {      
+            padding: 15px;      
+            text-align: left;      
+            border-bottom: 1px solid #ddd;      
+        }      
+      
+        .book-table th {      
+            background-color: #2e3b4e;      
+            color: #fff;      
+        }      
+      
+        .book-table tr:hover {      
+            background-color: #f1f1f1;      
+        }      
+      
+        .book-table td {      
+            color: #333;      
+        }      
+      
+        .book-table tbody tr:nth-child(even) {      
+            background-color: #fafafa;      
+        }      
+      
+    </style>      
+</head>      
+<body>      
+    <div class="container">      
+        <h1>Borrowed Books</h1>      
+      
+        <!-- Table to display borrowed books -->      
+        <table class="book-table">      
+            <thead>      
+                <tr>      
+                    <th>Book Title</th>      
+                    <th>Author</th>      
+                    <th>Borrowed Date</th>      
+                    <th>Due Date</th> 
+                    <th>Action</th>     
+                </tr>      
+            </thead>      
+            <tbody id="borrowedBooksList">      
+                <!-- Loop to display borrowed books dynamically -->      
+                {% for book in borrowed_books %}
+                 <tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.borrowed_date }}</td>
+    <td>{{ book.due_date }}</td>
+
+    <td>
+        <a href="{{ url_for('return_book', issue_id=book.issue_id) }}">
+            Return
+        </a>
+    </td>
+</tr>
+                {% endfor %}
+            </tbody>      
+        </table>      
+    </div>      
+</body>      
+</html>

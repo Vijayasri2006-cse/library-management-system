@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users - Library Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            height: 90%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .user-table th, .user-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-table th {
+            background-color: #2e3b4e;
+            color: #fff;
+        }
+
+        .user-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .user-table td {
+            color: #333;
+        }
+
+        .user-table tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Add button style */
+        .add-user-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .add-user-btn:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>View Users</h1>
+
+        <!-- Button to add a new user -->
+        <a href="{{ url_for('register') }}">
+            <button class="add-user-btn">Add User</button>
+        </a>
+
+        <!-- User table -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Roll number</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Contact No</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop to display users dynamically -->
+               <!-- {% for user in users %} -->
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1]}}</td>
+                    <td>{{ user[2]}}</td>
+                    <td>{{ user[3]}}</td>
+                    <td>{{ user[4]}}</td>
+                    <td>{{ user[5]}}</td>
+                    <td>{{ user[6]}}</td>
+                </tr>
+               <!-- {% endfor %} -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

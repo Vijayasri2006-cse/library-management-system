@@ -1,0 +1,1 @@
+SELECT * FROM issued_books;

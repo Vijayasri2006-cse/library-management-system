@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Books</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f4f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            overflow:hidden;
+        }
+
+        .container{
+            width:95%;
+            height:95%;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+            overflow:auto;
+        }
+
+        h1{
+            text-align:center;
+            font-size:3em;
+            color:#6c5ce7;
+            margin-bottom:30px;
+        }
+
+        .filters{
+            margin-bottom:20px;
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+
+        select,
+        input{
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            padding:10px 20px;
+            background:#4CAF50;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#45a049;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th{
+            background:#2e3b4e;
+            color:white;
+            padding:15px;
+            text-align:left;
+        }
+
+        table td{
+            padding:15px;
+            border-bottom:1px solid #ddd;
+        }
+
+        table tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        table tr:hover{
+            background:#f1f1f1;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>View Books</h1>
+
+    <form method="POST">
+
+        <div class="filters">
+
+            <label>Select Branch:</label>
+
+            <select name="branch">
+
+                <option value="All">All</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="IT">IT</option>
+                <option value="MECH">MECH</option>
+
+            </select>
+
+            <label>Select Year:</label>
+
+            <select name="year">
+
+                <option value="All">All</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+
+            </select>
+
+            <input type="text"
+                   name="search_query"
+                   placeholder="Search by Title or Author">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </div>
+
+    </form>
+
+    <table>
+
+        <tr>
+
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Genre</th>
+            <th>Total Copies</th>
+            <th>Shelf Number</th>
+            <th>Branch</th>
+            <th>Year</th>
+            <th>Publisher</th>
+            <th>Reserve</th>
+        </tr>
+
+        {% for book in books %}
+
+        <tr>
+
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.total_copies }}</td>
+            <td>{{ book.shelf_number }}</td>
+            <td>{{ book.branch }}</td>
+            <td>{{ book.year }}</td>
+            <td>{{ book.publisher }}</td>
+<td>
+        
+    <a href="/reserve_book/{{ book.book_id }}">
+    Reserve
+    </a>
+</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

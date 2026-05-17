@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        
+
+        /* Header Styling */
+        .header {
+            background: linear-gradient(90deg, #007BFF, #0056b3);
+            padding: 20px;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Action Buttons */
+        .actions {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-button {
+            width: 250px;
+            padding: 15px;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .action-button:hover {
+            background: linear-gradient(135deg, #2E8B57, #4CAF50);
+            transform: scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FF5733, #C70039);
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #C70039, #FF5733);
+            transform: scale(1.1);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">Admin Dashboard</div>
+
+    <!-- Buttons -->
+    <div class="actions">
+        <a href="{{ url_for('view_users') }}" class="action-button">View users</a>
+        <a href="{{ url_for('add_book') }}" class="action-button">Add Books</a>
+        <a href="{{ url_for('view_books') }}" class="action-button">View Books</a>
+        <a href="{{ url_for('issued_books') }}" class="action-button">Issued Books</a>
+
+    </div>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+    <script>
+        function logout() {
+            window.location.href = "{{ url_for('admin_login') }}";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Library Management System</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+          color:#6c5ce7;
+          margin-bottom: 20px;
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input {
+            background: #fff;
+            color: #000;
+        }
+        button {
+            background: #6c5ce7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        button:hover {
+            background: #4e43c5;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success{
+            background-color:#d4edda;
+            color:#155724
+        }
+        .error{
+            background-color:#f8d7da;
+            color:#721c24;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <form action="{{ url_for('register')}}" method="POST" id="registerForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="roll_number" placeholder="Roll number" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="contact_no" placeholder="Contact No" required>
+            <input type="text" name="course" placeholder="Course" required>
+            <input type="number" name="year" placeholder="Year" required>
+            <button type="submit">Register</button>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function() {
+            setTimeout(() => {
+                document.getElementById("registerForm").reset();
+            }, 100); 
+        });
+    </script>
+</body>
+</html>

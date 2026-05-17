@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view books</title>
+</head>
+<body>
+
+    <h2 style=color:#6c5ce7;text-align:center;>View Books</h2>
+
+    <label for="branch">Select Branch:</label>
+    <select id="branch">
+        <option value="">All</option>
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+        <option value="Civil">Civil</option>
+        <option value="EEE">EEE</option>
+        <option value="Mech">Mech</option>
+    </select><br>
+
+    <label for="year">Select Year:</label>
+    <select id="year">
+        <option value="">All</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+    </select>
+
+    <input type="text" id="searchInput" placeholder="Search by Title, Author, or Genre" onkeyup="filterBooks
+    ()"><br>
+
+    <button onclick="filterBooks()">Search</button><br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>Genre</th>
+                <th>Total Copies</th>
+                <th>Shelf Number</th>
+                <th>Branch</th>
+                <th>Year</th>
+                <th>Publisher</th>
+            </tr>
+        </thead>
+        <tbody id="booksTable">
+        </tbody>
+    </table>
+
+    <script>
+        let allBooks = [];  // Store all books globally
+
+        function fetchBooks() {
+            let branch = document.getElementById("branch").value;
+            let year = document.getElementById("year").value;
+
+            
+            .then(response => response.json())
+            .then(data => {
+                allBooks = data;  // Store books globally for searching
+                displayBooks(data);
+            });
+        }
+
+        function displayBooks(books) {
+            let tableBody = document.getElementById("booksTable");
+            tableBody.innerHTML = "";
+
+            books.forEach(book => {
+                let row = `<tr>
+                    <td>${book.book_id}</td>
+                    <td>${book.title}</td>
+                    <td>${book.authors}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.total_copies}</td>
+                    <td>${book.shelf_number}</td>
+                    <td>${book.branch}</td>
+                    <td>${book.year}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function filterBooks() {
+            let searchQuery = document.getElementById("searchInput").value.toLowerCase();
+            let filteredBooks = allBooks.filter(book =>
+                book.title.toLowerCase().includes(searchQuery) ||
+                book.authors.toLowerCase().includes(searchQuery) ||
+                book.genre.toLowerCase().includes(searchQuery)
+            );
+            displayBooks(filteredBooks);
+        }
+        
+    </script>
+
+</body>
+</html>
